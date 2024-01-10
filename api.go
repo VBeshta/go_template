@@ -13,9 +13,8 @@ type apiFunc func(http.ResponseWriter, *http.Request) error
 func makeHTTPHandleFunc(f apiFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if err := f(w, r); err != nil {
-			respondWithError(w, http.StatusBadRequest, err.Error())
+			WriteJSON(w, http.StatusBadRequest, err.Error())
 		}
-		respondWithJSON(w, 200)
 	}
 }
 

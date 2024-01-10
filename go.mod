@@ -1,4 +1,4 @@
-module github.com/VBeshta/go_template
+module github.com/YOUR-USER-OR-ORG-NAME/YOUR-REPO-NAME
 
 go 1.21.5
 

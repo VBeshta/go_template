@@ -1,8 +1,8 @@
 build:
-	go build -o bin/go_template //change go_template to {projectName} 
+	go build -o bin/YOUR-REPO-NAME
 
 run: build
-	./bin/go_template
+	./bin/YOUR-REPO-NAME
 
 test: 
 	go test -v ./...
