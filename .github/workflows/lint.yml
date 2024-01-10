@@ -3,6 +3,8 @@ name: Lint Go code
 on:
   push:
     branches: [ "master", "develop" ]
+  pull_request:
+    branches: [ "master", "develop" ]
 
 jobs:
   lint:
