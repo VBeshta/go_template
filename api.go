@@ -13,7 +13,9 @@ type apiFunc func(http.ResponseWriter, *http.Request) error
 func makeHTTPHandleFunc(f apiFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if err := f(w, r); err != nil {
-			WriteJSON(w, http.StatusBadRequest, err.Error())
+			if writeErr := WriteJSON(w, http.StatusBadRequest, err.Error()); writeErr != nil {
+				fmt.Println("Error writing JSON:", writeErr)
+			}
 		}
 	}
 }
@@ -35,7 +37,10 @@ func (s *APIServer) Run() {
 
 	log.Println("Json api server running on port: ", s.listenAddr)
 
-	http.ListenAndServe(s.listenAddr, router)
+	err := http.ListenAndServe(s.listenAddr, router)
+	if err != nil {
+		fmt.Printf("Error starting server: %s\n", err)
+	}
 }
 
 func (s *APIServer) handleEndpoint(w http.ResponseWriter, r *http.Request) error {
