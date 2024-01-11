@@ -1,6 +1,6 @@
 module github.com/YOUR-USER-OR-ORG-NAME/YOUR-REPO-NAME
 
-go 1.21.5
+go 1.21
 
 require github.com/gorilla/mux v1.8.1
 
